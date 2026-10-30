@@ -1,373 +1,1270 @@
+
 <!DOCTYPE html>
-<html lang="rw">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#082b61">
-  <meta name="description" content="CLEVER LAND TSS MATIMBA — Software Development, Tourism na Accounting. Menya amasomo yacu n'uburyo bwo kwiyandikisha.">
-  <title>CLEVER LAND TSS MATIMBA</title>
-  <link rel="icon" type="image/png" href="assets/clever-land-logo.png">
-  <style>
-    :root {
-      --navy:#082b61; --blue:#0757b8; --green:#138447; --gold:#f4b323;
-      --orange:#ed791e; --ink:#152238; --muted:#64748b; --paper:#f5f8fc;
-      --white:#fff; --line:#e3eaf2; --shadow:0 18px 50px rgba(8,43,97,.10);
-      --radius:22px;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;scroll-padding-top:92px}
-    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.65}
-    a{color:inherit;text-decoration:none}
-    button,input,select,textarea{font:inherit}
-    img{max-width:100%;display:block}
-    .container{width:min(1160px,calc(100% - 40px));margin-inline:auto}
-    .topline{height:5px;background:linear-gradient(90deg,var(--blue) 0 34%,var(--green) 34% 67%,var(--orange) 67%)}
-    header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(226,234,242,.9)}
-    .nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .brand{display:flex;align-items:center;gap:11px;min-width:220px}
-    .brand img{width:56px;height:56px;object-fit:contain}
-    .brand strong{display:block;color:var(--navy);font-size:15px;line-height:1.15;letter-spacing:.035em}
-    .brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:.14em;margin-top:4px}
-    .navlinks{display:flex;align-items:center;gap:25px;list-style:none}
-    .navlinks a{font-size:14px;font-weight:700;color:#34445b;transition:color .2s}
-    .navlinks a:hover,.navlinks a.active{color:var(--blue)}
-    .navlinks .nav-cta{background:var(--navy);color:#fff;padding:11px 18px;border-radius:30px}
-    .navlinks .nav-cta:hover{background:var(--blue);color:#fff}
-    .nav-actions{display:flex;gap:8px;align-items:center}
-    .icon-btn,.menu-btn{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:12px;padding:9px 11px;cursor:pointer;font-weight:800}
-    .menu-btn{display:none;font-size:20px}
-    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 82% 25%,rgba(26,132,71,.25),transparent 28%),linear-gradient(125deg,#061d45,#082b61 58%,#0b4a85);color:#fff;padding:100px 0 94px}
-    .hero:before,.hero:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.12);border-radius:50%;pointer-events:none}
-    .hero:before{width:540px;height:540px;right:-170px;top:-210px}
-    .hero:after{width:360px;height:360px;right:-75px;top:-120px}
-    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:45px;align-items:center;position:relative;z-index:1}
-    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:#ffe29a;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);padding:8px 14px;border-radius:30px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-    .eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(244,179,35,.16)}
-    h1{font-size:clamp(38px,5.6vw,68px);line-height:1.06;letter-spacing:-.045em;margin:22px 0}
-    h1 span{color:#ffd36a}
-    .hero-copy{max-width:650px;color:#dce8f7;font-size:18px;margin-bottom:30px}
-    .btns{display:flex;flex-wrap:wrap;gap:13px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 22px;border-radius:30px;font-weight:800;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
-    .btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,.16)}
-    .btn-gold{background:var(--gold);color:#1b2638}
-    .btn-outline{border:1px solid rgba(255,255,255,.55);color:#fff;background:rgba(255,255,255,.06)}
-    .hero-logo{display:flex;justify-content:center;align-items:center;position:relative}
-    .hero-logo:before{content:"";position:absolute;width:min(390px,90%);aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.08);box-shadow:0 0 0 22px rgba(255,255,255,.035),0 0 0 48px rgba(255,255,255,.025)}
-    .hero-logo img{width:min(410px,100%);max-height:420px;object-fit:contain;position:relative;filter:drop-shadow(0 24px 25px rgba(0,0,0,.25));animation:float 5s ease-in-out infinite}
-    .ticker{overflow:hidden;background:#ffcf58;color:#18253a;font-size:13px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
-    .ticker-track{display:flex;width:max-content;animation:marquee 34s linear infinite}
-    .ticker span{padding:11px 26px}
-    .ticker b{color:#0c6639}
-    section{padding:88px 0}
-    .section-head{text-align:center;max-width:720px;margin:0 auto 42px}
-    .kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
-    h2{font-size:clamp(29px,4vw,42px);line-height:1.15;color:var(--navy);letter-spacing:-.035em;margin:10px 0 13px}
-    .section-head p,.muted{color:var(--muted)}
-    .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:55px;align-items:center}
-    .about-visual{min-height:390px;border-radius:30px;background:linear-gradient(145deg,#082b61,#0b5bb0);display:grid;place-items:center;position:relative;overflow:hidden;box-shadow:var(--shadow)}
-    .about-visual:before,.about-visual:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.18);border-radius:50%}
-    .about-visual:before{width:360px;height:360px}.about-visual:after{width:270px;height:270px}
-    .about-visual img{width:270px;position:relative;z-index:1;filter:drop-shadow(0 15px 18px rgba(0,0,0,.2))}
-    .about-copy h2{margin-top:0}
-    .about-copy p{color:var(--muted);margin:0 0 15px}
-    .values{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:25px}
-    .value{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}
-    .value strong{display:block;color:var(--navy);font-size:14px}
-    .value span{font-size:12px;color:var(--muted)}
-    .programs{background:var(--paper)}
-    .program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .program{background:#fff;border:1px solid var(--line);border-radius:23px;padding:27px;box-shadow:0 8px 28px rgba(8,43,97,.05);transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
-    .program:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
-    .program:after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;right:-55px;top:-55px;background:var(--wash)}
-    .program-icon{width:66px;height:66px;border-radius:18px;display:grid;place-items:center;background:var(--wash);color:var(--tone);margin-bottom:20px}
-    .program-icon svg{width:34px;height:34px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-    .program h3{font-size:21px;color:var(--navy);margin-bottom:9px}
-    .program p{font-size:14px;color:var(--muted);min-height:68px}
-    .program ul{list-style:none;margin:17px 0 0;display:grid;gap:9px}
-    .program li{font-size:13px;color:#34445b;display:flex;gap:9px;align-items:flex-start}
-    .program li:before{content:"✓";font-weight:900;color:var(--tone)}
-    .blue{--tone:#1264c4;--wash:#e9f2ff}.green{--tone:#138447;--wash:#e8f7ee}.orange{--tone:#e87922;--wash:#fff1e5}
-    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .why{padding:24px;border-radius:18px;background:#fff;border:1px solid var(--line)}
-    .why b{display:block;color:var(--navy);margin-bottom:7px}.why p{font-size:14px;color:var(--muted)}
-    .admissions{background:linear-gradient(120deg,#082b61,#0b4b83);color:#fff}
-    .admissions .section-head h2{color:#fff}.admissions .section-head p{color:#d8e7f7}
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .step{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:24px}
-    .step-num{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#18253a;font-weight:900;margin-bottom:15px}
-    .step h3{font-size:17px;margin-bottom:7px}.step p{font-size:13px;color:#d8e7f7}
-    .fees{background:var(--paper)}
-    .fee-note{max-width:800px;margin:28px auto 0;padding:16px 18px;border-left:4px solid var(--gold);background:#fff;border-radius:10px;color:var(--muted);font-size:13px}
-    .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:35px}
-    .contact-card{background:var(--navy);color:#fff;padding:30px;border-radius:24px}
-    .contact-card h3{font-size:23px;margin-bottom:10px}.contact-card p{color:#d8e7f7;font-size:14px;margin-bottom:22px}
-    .contact-line{padding:13px 0;border-top:1px solid rgba(255,255,255,.16);font-size:14px}
-    .contact-line b{display:block;color:#ffdb7b;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
-    .contact-line a{overflow-wrap:anywhere}
-    .contact-form{display:grid;gap:14px;padding:28px;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
-    .field{display:grid;gap:6px}.field label{font-size:13px;font-weight:800;color:var(--navy)}
-    input,select,textarea{width:100%;padding:13px 14px;border:1px solid #d7e0eb;border-radius:11px;background:#fff;color:var(--ink);outline:none}
-    input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(18,100,196,.12)}
-    textarea{resize:vertical;min-height:115px}
-    .form-status{font-size:13px;color:var(--green);font-weight:700}
-    footer{background:#061a3b;color:#d4dfed;padding:35px 0 25px;text-align:center}
-    .footer-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:12px}
-    .footer-brand img{width:54px;height:54px;object-fit:contain}
-    .footer-brand strong{color:#fff;letter-spacing:.04em}
-    footer p{font-size:12px;color:#aebed2}
-    .float-wa{position:fixed;right:22px;bottom:22px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#19a95b;color:#fff;box-shadow:0 9px 25px rgba(0,0,0,.2);z-index:80;transition:transform .2s}
-    .float-wa:hover{transform:translateY(-4px)}
-    .float-wa svg{width:27px;height:27px;fill:currentColor}
-    .reveal{opacity:0;transform:translateY(25px);transition:opacity .75s ease,transform .75s ease}
-    .reveal.visible{opacity:1;transform:translateY(0)}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
-    @keyframes marquee{to{transform:translateX(-50%)}}
-    @media(max-width:900px){
-      .navlinks{gap:14px}.navlinks a{font-size:12px}.brand{min-width:unset}.brand strong{font-size:13px}
-      .hero-grid{grid-template-columns:1fr .7fr;gap:20px}.hero-logo img{width:300px}
-      .about-grid{gap:30px}.program-grid{gap:14px}.program{padding:22px}
-    }
-    @media(max-width:720px){
-      .nav{height:72px}.brand img{width:48px;height:48px}.brand strong{font-size:12px}
-      .menu-btn{display:block}.navlinks{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;padding:18px 22px 22px;border-bottom:1px solid var(--line);box-shadow:0 16px 22px rgba(8,43,97,.10);flex-direction:column;align-items:stretch;gap:0}
-      .navlinks.open{display:flex}.navlinks li a{display:block;padding:12px 5px;font-size:14px}.navlinks .nav-cta{text-align:center;margin-top:8px}
-      .hero{padding:75px 0 68px}.hero-grid{grid-template-columns:1fr;text-align:center}.hero-copy{margin-inline:auto}.btns{justify-content:center}.hero-logo{margin-top:20px}.hero-logo img{width:230px;max-height:250px}
-      section{padding:66px 0}.about-grid,.contact-grid{grid-template-columns:1fr}.about-visual{min-height:280px}.about-visual img{width:210px}
-      .program-grid,.why-grid,.steps{grid-template-columns:1fr}.program p{min-height:unset}
-    }
-    @media(max-width:440px){.container{width:min(100% - 30px,1160px)}.nav-actions{gap:5px}.icon-btn,.menu-btn{padding:8px}.brand{gap:7px}.brand img{width:42px;height:42px}.brand small{font-size:9px}.values{grid-template-columns:1fr}.hero-copy{font-size:16px}.btn{width:100%}.contact-form{padding:20px}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#082b22">
+<title>CLEVER LAND TSS MATIMBA</title>
+
+<style>
+:root {
+  --green: #082b22;
+  --green2: #14543e;
+  --gold: #d8b45a;
+  --cream: #f7f5ef;
+  --white: #ffffff;
+  --text: #1c2c24;
+  --muted: #68766e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.7;
+  transition: .3s;
+}
+
+body.dark {
+  --cream: #101c17;
+  --white: #192820;
+  --text: #f1f1e9;
+  --muted: #b7c3bb;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 90%;
+  max-width: 1150px;
+  margin: auto;
+}
+
+.topbar {
+  background: #041b16;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 14px;
+}
+
+header {
+  background: var(--green);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-symbol {
+  width: 55px;
+  height: 55px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.logo strong {
+  display: block;
+  font-size: 15px;
+}
+
+.logo small {
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navlinks a:hover {
+  color: var(--gold);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-actions button,
+.menu-btn {
+  padding: 9px 12px;
+  border: 1px solid #ffffff55;
+  border-radius: 5px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-btn {
+  display: none;
+}
+
+.hero {
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  background:
+    radial-gradient(circle at 80% 30%, #287454, transparent 35%),
+    linear-gradient(120deg, #06271f, #14543e);
+}
+
+.hero::after {
+  content: "CL";
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(150px, 30vw, 350px);
+  font-weight: bold;
+  color: #ffffff0b;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 90px 0;
+  animation: fadeUp 1s ease;
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(42px, 7vw, 75px);
+  line-height: 1.08;
+  margin: 22px 0;
+}
+
+.hero h1 span {
+  color: var(--gold);
+}
+
+.hero p {
+  max-width: 600px;
+  color: #e1e9e3;
+  font-size: 18px;
+  margin-bottom: 28px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 23px;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: .3s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: #17251f;
+}
+
+.btn-gold:hover {
+  transform: translateY(-4px);
+  background: #edcf7d;
+}
+
+.btn-outline {
+  border: 1px solid white;
+  color: white;
+  margin-left: 8px;
+}
+
+.btn-outline:hover {
+  background: #ffffff20;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 35px;
+  margin-top: 45px;
+  flex-wrap: wrap;
+}
+
+.hero-stats strong {
+  display: block;
+  color: var(--gold);
+  font-size: 25px;
+}
+
+.hero-stats span {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.section {
+  padding: 85px 0;
+}
+
+.section-heading {
+  max-width: 700px;
+  margin-bottom: 40px;
+}
+
+.kicker {
+  color: #a17d2e;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: 13px;
+}
+
+.section h2 {
+  color: var(--green2);
+  font-family: Georgia, serif;
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.2;
+  margin: 12px 0;
+}
+
+body.dark .section h2 {
+  color: var(--gold);
+}
+
+.section-heading p,
+.about-text p {
+  color: var(--muted);
+}
+
+.about-grid,
+.uniform-grid,
+.contact-grid,
+.register-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-art {
+  min-height: 350px;
+  border-radius: 8px;
+  background: linear-gradient(140deg, #082b22, #287454);
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-size: 100px;
+  font-weight: bold;
+  box-shadow: 0 15px 35px #0002;
+}
+
+.checklist {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.checklist li {
+  padding: 7px 0;
+}
+
+.checklist li::before {
+  content: "✓ ";
+  color: #a17d2e;
+  font-weight: bold;
+}
+
+.programs-section,
+.register-section {
+  background: #eeece4;
+}
+
+body.dark .programs-section,
+body.dark .register-section {
+  background: #14231b;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.card {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 7px;
+  border: 1px solid #aab7ac40;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px #0002;
+}
+
+.card-icon {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e8efe9;
+  font-size: 27px;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  color: var(--green2);
+  font-size: 23px;
+  margin-bottom: 12px;
+}
+
+body.dark .card h3 {
+  color: var(--gold);
+}
+
+.card p {
+  color: var(--muted);
+}
+
+.uniform-art {
+  background: linear-gradient(135deg, #e5dfd0, #f8f4e8);
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  font-size: 100px;
+  border-radius: 8px;
+}
+
+.uniform-copy p {
+  color: var(--muted);
+  margin: 15px 0;
+}
+
+.fees-section {
+  background: var(--green);
+  color: white;
+}
+
+.fees-section h2 {
+  color: white;
+}
+
+.fees-section .section-heading p {
+  color: #d1ddd5;
+}
+
+.fee-card {
+  border: 1px solid #ffffff45;
+  border-radius: 7px;
+  padding: 30px;
+  background: #ffffff0c;
+}
+
+.fee-card.featured {
+  background: var(--gold);
+  color: #17251f;
+}
+
+.fee-card h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.fee-card strong {
+  display: block;
+  font-size: 35px;
+  font-family: Georgia, serif;
+}
+
+.fee-card p {
+  margin-top: 10px;
+}
+
+.faq-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #aab7ac60;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--green2);
+}
+
+body.dark .faq-item summary {
+  color: var(--gold);
+}
+
+.faq-item p {
+  color: var(--muted);
+  margin-top: 12px;
+}
+
+.register-info {
+  background: var(--green);
+  color: white;
+  padding: 32px;
+  border-radius: 7px;
+}
+
+.register-info h3 {
+  font-size: 27px;
+  margin-bottom: 15px;
+}
+
+.register-info p {
+  color: #d1ddd5;
+  margin-bottom: 15px;
+}
+
+.register-info a {
+  color: var(--gold);
+}
+
+.form-card {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 7px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.field {
+  margin-bottom: 17px;
+}
+
+.field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #bdc9c0;
+  border-radius: 4px;
+  background: var(--cream);
+  color: var(--text);
+}
+
+.field textarea {
+  min-height: 110px;
+}
+
+.contact-section {
+  background: var(--white);
+}
+
+.contact-panel {
+  background: var(--cream);
+  padding: 30px;
+  border-radius: 7px;
+}
+
+.contact-panel p {
+  margin: 12px 0;
+  color: var(--muted);
+}
+
+.contact-panel a {
+  color: #a17d2e;
+}
+
+.rtb-mark {
+  display: inline-block;
+  background: white;
+  color: #1c5fad;
+  padding: 15px 20px;
+  margin-top: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+footer {
+  background: #041b16;
+  color: white;
+  padding: 50px 0 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 30px;
+}
+
+footer h3,
+footer h4 {
+  color: var(--gold);
+  margin-bottom: 15px;
+}
+
+footer a {
+  display: block;
+  color: #d1ddd5;
+  margin: 7px 0;
+}
+
+.copyright {
+  border-top: 1px solid #ffffff30;
+  margin-top: 35px;
+  padding-top: 20px;
+  font-size: 13px;
+  text-align: center;
+  color: #b7c3bb;
+}
+
+.backtop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background: var(--gold);
+  cursor: pointer;
+  font-size: 22px;
+  display: none;
+  z-index: 99;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: .8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.progress {
+  height: 3px;
+  width: 0;
+  background: var(--gold);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media(max-width: 900px) {
+  .navlinks {
+    display: none;
+    position: absolute;
+    top: 82px;
+    left: 0;
+    width: 100%;
+    background: var(--green);
+    padding: 25px;
+    flex-direction: column;
+  }
+
+  .navlinks.open {
+    display: flex;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 650px) {
+  .about-grid,
+  .uniform-grid,
+  .contact-grid,
+  .register-grid,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cards,
+  .fee-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .hero {
+    min-height: 570px;
+  }
+
+  .hero-stats {
+    gap: 20px;
+  }
+
+  .btn-outline {
+    margin: 10px 0 0;
+  }
+
+  .section {
+    padding: 65px 0;
+  }
+
+  .logo strong {
+    font-size: 12px;
+  }
+
+  .logo-symbol {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
+
 <body>
-  <div class="topline"></div>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#home" aria-label="CLEVER LAND TSS MATIMBA home">
-        <img src="assets/clever-land-logo.png" alt="Ikirango cya CLEVER LAND TSS MATIMBA">
-        <span><strong>CLEVER LAND</strong><small>TSS MATIMBA</small></span>
+
+<div class="progress" id="progress"></div>
+
+<div class="topbar">
+  CLEVER LAND TSS MATIMBA |
+  Phone: 0732 683 073 |
+  Email: Claverlandtvets@gmail.com
+</div>
+
+<header>
+  <nav class="container">
+
+    <div class="logo">
+      <div class="logo-symbol">CL</div>
+      <div>
+        <strong>CLEVER LAND TSS</strong>
+        <small>MATIMBA</small>
+      </div>
+    </div>
+
+    <div class="navlinks" id="navlinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#uniforms">Uniforms</a>
+      <a href="#fees">Fees</a>
+      <a href="#faq">FAQ</a>
+      <a href="#register">Register</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="nav-actions">
+      <button id="langBtn">RW</button>
+      <button id="themeBtn">☾</button>
+      <button class="menu-btn" id="menuBtn">☰</button>
+    </div>
+
+  </nav>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-content">
+
+      <div class="eyebrow"
+           data-en="WELCOME TO OUR SCHOOL"
+           data-rw="IKAZE KU ISHURI RYACU">
+        WELCOME TO OUR SCHOOL
+      </div>
+
+      <h1>
+        CLEVER LAND<br>
+        <span>TSS MATIMBA</span>
+      </h1>
+
+      <p
+        data-en="Building skills, creating opportunities and preparing learners for a successful future through technical and vocational education."
+        data-rw="Duteza ubumenyi, tugatanga amahirwe kandi tugategura abanyeshuri kugira ngo bazagire ahazaza heza binyuze mu burezi bw'imyuga n'ubumenyingiro.">
+        Building skills, creating opportunities and preparing learners for a successful future through technical and vocational education.
+      </p>
+
+      <a href="#programs" class="btn btn-gold"
+         data-en="Explore Programs →"
+         data-rw="Reba amashami →">
+        Explore Programs →
       </a>
-      <ul class="navlinks" id="navLinks">
-        <li><a href="#home">Ahabanza</a></li><li><a href="#about">Ibyerekeye ikigo</a></li>
-        <li><a href="#programs">Amasomo</a></li><li><a href="#admissions">Kwiyandikisha</a></li>
-        <li><a href="#contact" class="nav-cta">Twandikire</a></li>
-      </ul>
-      <div class="nav-actions">
-        <button class="icon-btn" id="langBtn" type="button" aria-label="Change language">EN</button>
-        <button class="menu-btn" id="menuBtn" type="button" aria-label="Fungura menu" aria-expanded="false">☰</button>
-      </div>
-    </div>
-  </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-grid">
+      <a href="#register" class="btn btn-outline"
+         data-en="Apply Now"
+         data-rw="Iyandikishe">
+        Apply Now
+      </a>
+
+      <div class="hero-stats">
         <div>
-          <div class="eyebrow">Technical Secondary School · Matimba</div>
-          <h1>Ubumenyi bufatika.<br><span>Ejo hazaza heza.</span></h1>
-          <p class="hero-copy">Murakaza neza kuri CLEVER LAND TSS MATIMBA. Twibanda ku bumenyi n'ubumenyingiro bifasha abanyeshuri kwitegura umurimo, kwihangira imirimo no gukomeza kwiga.</p>
-          <div class="btns">
-            <a class="btn btn-gold" href="#programs">Menya amasomo yacu <span>→</span></a>
-            <a class="btn btn-outline" href="#contact">Twandikire</a>
-          </div>
+          <strong>03</strong>
+          <span>Programs</span>
         </div>
-        <div class="hero-logo"><img src="assets/clever-land-logo.png" alt="CLEVER LAND TSS MATIMBA logo"></div>
+        <div>
+          <strong>TVET</strong>
+          <span>Practical Skills</span>
+        </div>
+        <div>
+          <strong>2026</strong>
+          <span>New Opportunities</span>
+        </div>
       </div>
-    </section>
 
-    <div class="ticker" aria-label="Amasomo yigishwa">
-      <div class="ticker-track">
-        <span>SOFTWARE DEVELOPMENT</span><span>✦</span><span><b>TOURISM</b></span><span>✦</span><span>ACCOUNTING</span><span>✦</span><span>CLEVER LAND TSS MATIMBA</span><span>✦</span>
-        <span>SOFTWARE DEVELOPMENT</span><span>✦</span><span><b>TOURISM</b></span><span>✦</span><span>ACCOUNTING</span><span>✦</span><span>CLEVER LAND TSS MATIMBA</span><span>✦</span>
-      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container about-grid">
+
+    <div class="about-art reveal">CL</div>
+
+    <div class="about-text reveal">
+      <div class="kicker">ABOUT OUR SCHOOL</div>
+
+      <h2
+        data-en="Education for a better future"
+        data-rw="Uburezi bw'ejo hazaza heza">
+        Education for a better future
+      </h2>
+
+      <p
+        data-en="CLEVER LAND TSS MATIMBA is committed to providing technical and vocational education that helps learners develop practical knowledge, professional skills and confidence."
+        data-rw="CLEVER LAND TSS MATIMBA yiyemeje gutanga uburezi bw'imyuga n'ubumenyingiro bufasha abanyeshuri kugira ubumenyi ngiro, ubushobozi bw'umwuga n'icyizere.">
+        CLEVER LAND TSS MATIMBA is committed to providing technical and vocational education that helps learners develop practical knowledge, professional skills and confidence.
+      </p>
+
+      <ul class="checklist">
+        <li>Practical learning</li>
+        <li>Professional development</li>
+        <li>Career preparation</li>
+        <li>Skills for the future</li>
+      </ul>
+
+      <a href="#contact" class="btn btn-gold">Contact Us</a>
     </div>
 
-    <section id="about">
-      <div class="container about-grid">
-        <div class="about-visual reveal"><img src="assets/clever-land-logo.png" alt="Ikirango cy'ishuri"></div>
-        <div class="about-copy reveal">
-          <div class="kicker">Tumenye ikigo</div>
-          <h2>Ahantu ho kwiga, guhanga no kwitegura ejo hazaza</h2>
-          <p><strong>CLEVER LAND TSS MATIMBA</strong> ni ikigo cy'amashuri y'imyuga n'ubumenyingiro. Intego yacu ni ugufasha abanyeshuri kunguka ubumenyi, ubushobozi bwo gukora no gukemura ibibazo.</p>
-          <p>Mu masomo yacu, abanyeshuri bahabwa amahirwe yo kwiga amahame y'umwuga no kuyahuza n'imyitozo ngiro.</p>
-          <div class="values">
-            <div class="value"><strong>Ubumenyi bufatika</strong><span>Kwiga no gushyira mu bikorwa.</span></div>
-            <div class="value"><strong>Guhanga udushya</strong><span>Gutekereza no gukemura ibibazo.</span></div>
-            <div class="value"><strong>Ikinyabupfura</strong><span>Kubaha no kuzuza inshingano.</span></div>
-            <div class="value"><strong>Kwitegura umurimo</strong><span>Kwiyubakira ubushobozi.</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
+  </div>
+</section>
 
-    <section class="programs" id="programs">
-      <div class="container">
-        <div class="section-head reveal"><div class="kicker">Combinations zacu</div><h2>Hitamo umwuga w'ejo hazaza</h2><p>Reba ibyo buri combination yigisha n'ubumenyi ushobora kunguka.</p></div>
-        <div class="program-grid">
-          <article class="program blue reveal">
-            <div class="program-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3M9 9l-2 2 2 2M15 9l2 2-2 2M13 8l-2 6"/></svg></div>
-            <h3>Software Development</h3>
-            <p>Wiga gutegura no kubaka porogaramu, imbuga za internet na sisitemu zikemura ibibazo.</p>
-            <ul><li>Programming / Coding</li><li>Web design and development</li><li>Databases</li><li>Software testing</li></ul>
-          </article>
-          <article class="program green reveal">
-            <div class="program-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18M4.8 6.5h14.4M4.8 17.5h14.4"/></svg></div>
-            <h3>Tourism</h3>
-            <p>Wiga ibijyanye n'ingendo, kwakira abashyitsi, kuyobora ba mukerarugendo no kumenyekanisha ibyiza nyaburanga.</p>
-            <ul><li>Tour guiding</li><li>Customer care</li><li>Travel and tour planning</li><li>Hospitality basics</li></ul>
-          </article>
-          <article class="program orange reveal">
-            <div class="program-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8 6h8M8 10h2M14 10h2M8 14h2M14 14h2M8 18h2M14 18h2"/></svg></div>
-            <h3>Accounting</h3>
-            <p>Wiga kubika no gusesengura inyandiko z'imari, gukurikirana amafaranga no gutegura raporo.</p>
-            <ul><li>Bookkeeping</li><li>Financial records</li><li>Preparing accounts</li><li>Accounting software</li></ul>
-          </article>
-        </div>
-      </div>
-    </section>
+<section class="section programs-section" id="programs">
+  <div class="container">
 
-    <section>
-      <div class="container">
-        <div class="section-head reveal"><div class="kicker">Intego yacu</div><h2>Ubumenyi bujyana n'ibikenewe ku isoko ry'umurimo</h2><p>Dufasha abanyeshuri kwiyubakamo ubushobozi bushobora kubafasha mu buzima bw'akazi no mu iterambere ryabo.</p></div>
-        <div class="why-grid">
-          <div class="why reveal"><b>Kwiga dukora</b><p>Guhuza amasomo n'imyitozo ifasha gusobanukirwa ibyo wiga.</p></div>
-          <div class="why reveal"><b>Ubushobozi bwo guhanga</b><p>Gutekereza mu buryo bwagutse no gushaka ibisubizo.</p></div>
-          <div class="why reveal"><b>Kwitegura ejo hazaza</b><p>Kunguka ubumenyi bwagufasha mu kazi no gukomeza amashuri.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="admissions" id="admissions">
-      <div class="container">
-        <div class="section-head reveal"><div class="kicker" style="color:#ffdb7b">Kwiyandikisha</div><h2>Intambwe zo gusaba kwiga</h2><p>Twandikire kugira ngo umenye ibisabwa, imyanya ihari n'andi makuru ajyanye no kwinjira mu kigo.</p></div>
-        <div class="steps">
-          <div class="step reveal"><div class="step-num">01</div><h3>Hitamo combination</h3><p>Reba amasomo atatu ahari uhitemo ijyanye n'intego zawe.</p></div>
-          <div class="step reveal"><div class="step-num">02</div><h3>Tegura amakuru</h3><p>Tegura amazina yawe n'uburyo twakubonaho kugira ngo tubashe kugufasha.</p></div>
-          <div class="step reveal"><div class="step-num">03</div><h3>Twandikire</h3><p>Ohereza ubutumwa cyangwa uhamagare ubuyobozi kugira ngo umenye ibisabwa byose.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="fees" id="fees">
-      <div class="container">
-        <div class="section-head reveal"><div class="kicker">Amakuru y'ishuri</div><h2>Menya ibisabwa mbere yo kwiyandikisha</h2><p>Ku bijyanye n'amafaranga y'ishuri, amatariki n'inyandiko zisabwa, saba amakuru agezweho ku buyobozi.</p></div>
-        <div class="fee-note reveal">Amakuru y'amafaranga n'ibisabwa ashobora guhinduka. Kugira ngo wirinde amakuru atari yo, hamagara ikigo cyangwa ukoreshe uburyo bwo kutwandikira buri kuri uru rubuga.</div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="section-head reveal"><div class="kicker">Turi hano kugufasha</div><h2>Twandikire</h2><p>Ufite ikibazo ku masomo cyangwa ku kwiyandikisha? Twoherereze ubutumwa.</p></div>
-        <div class="contact-grid">
-          <div class="contact-card reveal">
-            <h3>CLEVER LAND TSS MATIMBA</h3>
-            <p>Twandikire ukoresheje telefone, WhatsApp cyangwa email.</p>
-            <div class="contact-line"><b>Telefone</b><a href="tel:+250732683073">073 268 3073</a></div>
-            <div class="contact-line"><b>WhatsApp</b><a href="https://wa.me/250732683073" target="_blank" rel="noopener">+250 732 683 073</a></div>
-            <div class="contact-line"><b>Email</b><a href="mailto:Claverlandtvets@gmail.com">Claverlandtvets@gmail.com</a></div>
-            <div class="contact-line"><b>Amasomo</b>Software Development · Tourism · Accounting</div>
-          </div>
-          <form class="contact-form reveal" id="contactForm">
-            <div class="field"><label for="name">Amazina yawe</label><input id="name" name="name" autocomplete="name" required placeholder="Andika amazina yawe"></div>
-            <div class="field"><label for="phone">Telefone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="Urugero: 07XXXXXXXX"></div>
-            <div class="field"><label for="subject">Icyo ushaka kumenya</label><select id="subject" name="subject"><option>Software Development</option><option>Tourism</option><option>Accounting</option><option>Kwiyandikisha</option><option>Andi makuru</option></select></div>
-            <div class="field"><label for="message">Ubutumwa</label><textarea id="message" name="message" required placeholder="Andika ubutumwa bwawe..."></textarea></div>
-            <button class="btn btn-gold" type="submit">Ohereza kuri WhatsApp →</button>
-            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-brand"><img src="assets/clever-land-logo.png" alt=""><strong>CLEVER LAND TSS MATIMBA</strong></div>
-      <p>Software Development · Tourism · Accounting</p>
-      <p style="margin-top:10px">© <span id="year"></span> CLEVER LAND TSS MATIMBA. Uburenganzira bwose burabitswe.</p>
+    <div class="section-heading reveal">
+      <div class="kicker">OUR PROGRAMS</div>
+      <h2>Choose your future career</h2>
+      <p>Explore the programs offered at CLEVER LAND TSS MATIMBA.</p>
     </div>
-  </footer>
 
-  <a class="float-wa" href="https://wa.me/250732683073" target="_blank" rel="noopener" aria-label="Twandikire kuri WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.3ZM12.2 21.6h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 0 1-1.5-5.1c0-5.4 4.4-9.8 9.8-9.8 2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.8 9.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.3.2-.6.2-1.2.2-1.3-.1-.2-.3-.3-.6-.4Z"/></svg>
-  </a>
+    <div class="cards">
 
-  <script>
-    const navLinks = document.getElementById('navLinks');
-    const menuBtn = document.getElementById('menuBtn');
-    menuBtn.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', String(open));
-      menuBtn.textContent = open ? '×' : '☰';
-    });
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.textContent = '☰';
-    }));
-    document.getElementById('year').textContent = new Date().getFullYear();
+      <article class="card reveal">
+        <div class="card-icon">💻</div>
+        <h3>Software Development</h3>
+        <p>
+          Learn programming, website development,
+          computer applications and software skills.
+        </p>
+      </article>
 
-    // Scroll reveal animations; automatically respects reduced-motion settings.
-    const revealItems = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {threshold: 0.12});
-      revealItems.forEach(item => observer.observe(item));
-    } else {
-      revealItems.forEach(item => item.classList.add('visible'));
+      <article class="card reveal">
+        <div class="card-icon">🌍</div>
+        <h3>Tourism</h3>
+        <p>
+          Develop skills in tourism, hospitality,
+          customer care and travel services.
+        </p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon">📊</div>
+        <h3>Accounting</h3>
+        <p>
+          Learn financial records, bookkeeping,
+          accounting principles and business skills.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="uniforms">
+  <div class="container uniform-grid">
+
+    <div class="uniform-art reveal">🎓</div>
+
+    <div class="uniform-copy reveal">
+      <div class="kicker">SCHOOL UNIFORMS</div>
+      <h2>Our school identity</h2>
+      <p>
+        School uniforms help learners represent their
+        institution with pride, discipline and unity.
+      </p>
+      <p>
+        For information about the official uniform,
+        please contact the school administration.
+      </p>
+      <a href="#contact" class="btn btn-gold">Ask About Uniforms</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="section fees-section" id="fees">
+  <div class="container">
+
+    <div class="section-heading reveal">
+      <div class="kicker">SCHOOL FEES</div>
+      <h2>Our school fees</h2>
+      <p>Fee information for learners at CLEVER LAND TSS MATIMBA.</p>
+    </div>
+
+    <div class="cards fee-cards">
+
+      <div class="fee-card reveal">
+        <h3>Registration</h3>
+        <strong>5,000 FRW</strong>
+        <p>Registration fee</p>
+      </div>
+
+      <div class="fee-card featured reveal">
+        <h3>Day Student</h3>
+        <strong>75,000 FRW</strong>
+        <p>Day school fees</p>
+      </div>
+
+      <div class="fee-card reveal">
+        <h3>Boarding Student</h3>
+        <strong>150,000 FRW</strong>
+        <p>Boarding school fees</p>
+      </div>
+
+    </div>
+
+    <p style="margin-top:25px;color:#d1ddd5">
+      Please contact the school administration to confirm
+      payment details and any updated fees.
+    </p>
+
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container">
+
+    <div class="section-heading reveal">
+      <div class="kicker">QUESTIONS AND ANSWERS</div>
+      <h2>Frequently asked questions</h2>
+    </div>
+
+    <div class="faq-item reveal">
+      <details>
+        <summary>Which programs are available?</summary>
+        <p>Software Development, Tourism and Accounting.</p>
+      </details>
+    </div>
+
+    <div class="faq-item reveal">
+      <details>
+        <summary>How can I register?</summary>
+        <p>Complete the registration form on this website and send your enquiry through WhatsApp.</p>
+      </details>
+    </div>
+
+    <div class="faq-item reveal">
+      <details>
+        <summary>Does the school offer boarding?</summary>
+        <p>Contact the school administration for information about boarding arrangements.</p>
+      </details>
+    </div>
+
+    <div class="faq-item reveal">
+      <details>
+        <summary>How can I contact the school?</summary>
+        <p>Call 0732 683 073 or email Claverlandtvets@gmail.com.</p>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<section class="section register-section" id="register">
+  <div class="container">
+
+    <div class="section-heading reveal">
+      <div class="kicker">TAKE THE NEXT STEP</div>
+      <h2>Registration enquiry</h2>
+      <p>Fill in the form to contact our school through WhatsApp.</p>
+    </div>
+
+    <div class="register-grid">
+
+      <div class="register-info reveal">
+        <h3>Start your journey at Clever Land.</h3>
+        <p>
+          Tell us about yourself and the program
+          you are interested in.
+        </p>
+
+        <p>☎ <a href="tel:+250732683073">0732 683 073</a></p>
+        <p>✉ <a href="mailto:Claverlandtvets@gmail.com">Claverlandtvets@gmail.com</a></p>
+        <p>WhatsApp:
+          <a href="https://wa.me/250732683073">Chat with us</a>
+        </p>
+      </div>
+
+      <form class="form-card reveal" id="registrationForm">
+
+        <div class="form-row">
+          <div class="field">
+            <label for="fullname">Full name</label>
+            <input id="fullname" name="fullname"
+                   required placeholder="Your full name">
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input id="phone" name="phone"
+                   required placeholder="07...">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="program">Program</label>
+            <select id="program" name="program" required>
+              <option value="">Choose a program</option>
+              <option>Software Development</option>
+              <option>Tourism</option>
+              <option>Accounting</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="study">Study option</label>
+            <select id="study" name="study">
+              <option>Day student</option>
+              <option>Boarding student</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message"
+                    placeholder="Write your question..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-gold">
+          Send enquiry on WhatsApp →
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<section class="section contact-section" id="contact">
+  <div class="container">
+
+    <div class="section-heading reveal">
+      <div class="kicker">GET IN TOUCH</div>
+      <h2>Contact the school</h2>
+      <p>We are ready to help you with information about our school.</p>
+    </div>
+
+    <div class="contact-grid">
+
+      <div class="contact-panel reveal">
+        <h3>CLEVER LAND TSS MATIMBA</h3>
+
+        <p>Technical & Vocational Education and Training</p>
+
+        <p>Phone:
+          <a href="tel:+250732683073">0732 683 073</a>
+        </p>
+
+        <p>Email:
+          <a href="mailto:Claverlandtvets@gmail.com">
+            Claverlandtvets@gmail.com
+          </a>
+        </p>
+
+        <p>WhatsApp:
+          <a href="https://wa.me/250732683073">
+            Chat with us
+          </a>
+        </p>
+
+        <div class="rtb-mark">
+          RTB<br>
+          <small>RWANDA TVET BOARD</small>
+        </div>
+
+        <p>
+          <a href="https://www.rtb.gov.rw/" target="_blank" rel="noopener">
+            Visit Rwanda TVET Board
+          </a>
+        </p>
+      </div>
+
+      <form class="contact-panel reveal" id="contactForm">
+        <h3>Send a message</h3>
+
+        <div class="field">
+          <label for="cname">Your name</label>
+          <input id="cname" required>
+        </div>
+
+        <div class="field">
+          <label for="cemail">Your email</label>
+          <input id="cemail" type="email" required>
+        </div>
+
+        <div class="field">
+          <label for="cmessage">Your message</label>
+          <textarea id="cmessage" required></textarea>
+        </div>
+
+        <button class="btn btn-gold" type="submit">
+          Prepare email →
+        </button>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+        <h3>CLEVER LAND TSS MATIMBA</h3>
+        <p>
+          Practical skills. Real opportunities.
+          Education for a better future.
+        </p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#uniforms">Uniforms</a>
+        <a href="#fees">Fees</a>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:+250732683073">0732 683 073</a>
+        <a href="mailto:Claverlandtvets@gmail.com">
+          Claverlandtvets@gmail.com
+        </a>
+        <a href="https://wa.me/250732683073">WhatsApp</a>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © <span id="year"></span> CLEVER LAND TSS MATIMBA.
+      All rights reserved.
+    </div>
+
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" aria-label="Back to top">↑</button>
+
+<script>
+const $ = selector => document.querySelector(selector);
+
+let language = "en";
+
+$("#year").textContent = new Date().getFullYear();
+
+// Mobile menu
+$("#menuBtn").addEventListener("click", () => {
+  $("#navlinks").classList.toggle("open");
+});
+
+// Close mobile menu after clicking a link
+document.querySelectorAll("#navlinks a").forEach(link => {
+  link.addEventListener("click", () => {
+    $("#navlinks").classList.remove("open");
+  });
+});
+
+// Dark mode
+$("#themeBtn").addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  $("#themeBtn").textContent =
+    document.body.classList.contains("dark") ? "☀" : "☾";
+});
+
+// Language switch
+$("#langBtn").addEventListener("click", () => {
+  language = language === "en" ? "rw" : "en";
+
+  document.documentElement.lang = language;
+
+  document.querySelectorAll("[data-en][data-rw]").forEach(element => {
+    element.textContent = element.dataset[language];
+  });
+
+  $("#langBtn").textContent = language === "en" ? "RW" : "EN";
+});
+
+// Scroll progress and back to top
+window.addEventListener("scroll", () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+
+  $("#progress").style.width =
+    (max > 0 ? scrollY / max * 100 : 0) + "%";
+
+  $("#backtop").style.display =
+    scrollY > 400 ? "block" : "none";
+});
+
+$("#backtop").addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+// Scroll reveal animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
     }
+  });
+}, {
+  threshold: 0.12
+});
 
-    // The contact form opens WhatsApp with the visitor's message.
-    document.getElementById('contactForm').addEventListener('submit', event => {
-      event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      const message = [
-        'Muraho CLEVER LAND TSS MATIMBA,',
-        'Amazina: ' + data.get('name'),
-        'Telefone: ' + data.get('phone'),
-        'Icyo nshaka kumenya: ' + data.get('subject'),
-        'Ubutumwa: ' + data.get('message')
-      ].join('\n');
-      document.getElementById('formStatus').textContent = 'Turafungura WhatsApp kugira ngo wohereze ubutumwa bwawe.';
-      window.open('https://wa.me/250732683073?text=' + encodeURIComponent(message), '_blank', 'noopener');
-    });
+document.querySelectorAll(".reveal").forEach(element => {
+  observer.observe(element);
+});
 
-    // Highlight the navigation link for the section currently being viewed.
-    const sections = document.querySelectorAll('main section[id]');
-    const navAnchors = document.querySelectorAll('.navlinks a[href^="#"]');
-    if ('IntersectionObserver' in window) {
-      const sectionObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
-          }
-        });
-      }, {rootMargin: '-30% 0px -60% 0px'});
-      sections.forEach(section => sectionObserver.observe(section));
-    }
+// Registration form sends details to WhatsApp
+$("#registrationForm").addEventListener("submit", event => {
+  event.preventDefault();
 
-    // Simple Kinyarwanda / English switch for the main navigation and page title.
-    const english = {
-      'Ahabanza':'Home','Ibyerekeye ikigo':'About','Amasomo':'Programs','Kwiyandikisha':'Admissions','Twandikire':'Contact',
-      'Tumenye ikigo':'ABOUT THE SCHOOL','Hitamo umwuga w\'ejo hazaza':'Choose your future career',
-      'Combinations zacu':'OUR PROGRAMMES','Turi hano kugufasha':'WE ARE HERE TO HELP'
-    };
-    let isEnglish = false;
-    document.getElementById('langBtn').addEventListener('click', () => {
-      isEnglish = !isEnglish;
-      document.getElementById('langBtn').textContent = isEnglish ? 'RW' : 'EN';
-      navAnchors.forEach(a => {
-        const rw = a.dataset.rw || a.textContent.trim();
-        if (!a.dataset.rw) a.dataset.rw = rw;
-        a.textContent = isEnglish ? (english[rw] || rw) : rw;
-      });
-    });
-  </script>
+  const form = new FormData(event.target);
+
+  const message =
+    "Registration enquiry - CLEVER LAND TSS MATIMBA\n" +
+    "Name: " + form.get("fullname") + "\n" +
+    "Phone: " + form.get("phone") + "\n" +
+    "Program: " + form.get("program") + "\n" +
+    "Study option: " + form.get("study") + "\n" +
+    "Message: " + (form.get("message") || "None");
+
+  const url =
+    "https://wa.me/250732683073?text=" +
+    encodeURIComponent(message);
+
+  window.open(url, "_blank");
+});
+
+// Contact form prepares an email
+$("#contactForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const name = $("#cname").value;
+  const email = $("#cemail").value;
+  const message = $("#cmessage").value;
+
+  const subject = encodeURIComponent(
+    "Website enquiry - CLEVER LAND TSS MATIMBA"
+  );
+
+  const body = encodeURIComponent(
+    "Name: " + name +
+    "\nEmail: " + email +
+    "\n\n" + message
+  );
+
+  window.location.href =
+    "mailto:Claverlandtvets@gmail.com?subject=" +
+    subject + "&body=" + body;
+});
+</script>
+
 </body>
 </html>
